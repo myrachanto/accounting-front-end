@@ -12,7 +12,7 @@
                  <v-col cols="12" md="12">
                     <v-card-text class="mt-12">
                       <h1 class="text-center display-2 teal--text text--accent-3">
-                        New Product
+                        New category
                       </h1>
                       
                       <template >  
@@ -62,7 +62,7 @@
                                       >
                                       <v-text-field
                                         v-model="form.title"
-                                        label="Title"
+                                        label="Percentage"
                                         :error-messages="errors"   
                                         required
                                       ></v-text-field>
@@ -70,81 +70,22 @@
                                     </v-col>
                                   </v-row>
                                    <v-row>
-                                  <v-col
-                                    class="d-flex"
-                                    cols="12"
-                                    sm="6"
-                                  >
-                                    <v-select
-                                      :items="option"
-                                      v-model="form.category"
-                                      label="Category" 
-                                      required
-                                    ></v-select>
-                                  </v-col>
-                                  <v-col
-                                      cols="12"
-                                      md="6"
-                                    ><validation-provider
-                                        v-slot="{ errors }"
-                                        name="Price"
-                                        rules="required"
-                                      >
-                                      <v-text-field
-                                        v-model="form.sprice"
-                                        label="Price"
-                                        type="number"
-                                        :error-messages="errors" 
-                                        required
-                                      ></v-text-field>
-                                      </validation-provider>
-                                    </v-col>
-                                   </v-row>
-                                   <v-row>
                                     <v-col
                                       cols="12"
                                       md="12"
                                     ><validation-provider
                                         v-slot="{ errors }"
-                                        name="Price"
+                                        name="Description"
                                         rules="required"
                                       >
-                                      <v-textarea
+                                      <v-text-field
                                         v-model="form.description"
-                                        name="input-7-1"
                                         label="Description"
                                         :error-messages="errors" 
                                         required
-                                      ></v-textarea>
+                                      ></v-text-field>
                                       </validation-provider>
                                     </v-col>
-                                   </v-row>
-                                     <v-row>
-                                    <v-col
-                                      cols="12"
-                                      md="6"
-                                    >   <v-file-input
-                                        accept="image/*"
-                                        label="Change Image"
-                                        required
-                                        type="file"
-                                        @change="onFile"
-                                      ></v-file-input>
-                                      </v-col>
-                                      <v-col
-                                      cols="12"
-                                      md="6"
-                                    >   <v-card>
-                                      <v-img
-                                        :src="`http://localhost:5000/imgs/products/${form.picture}`"
-                                        max-height="125"
-                                        class="grey darken-4"
-                                      ></v-img>
-                                      <v-card-title class="title">
-                                        {{form.name}}
-                                      </v-card-title>
-                                    </v-card>
-                                      </v-col>
                                   </v-row>
                                   
                                 </v-container>
@@ -169,9 +110,9 @@
 </template>
 
 <script>
- import axios from '../../../axios'
+ import axios from '@/axios'
 
-import back from '../../../layouts/back'
+import back from '@/layouts/back'
   import { required, email, max } from 'vee-validate/dist/rules'
   import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
  setInteractionMode('eager')
@@ -204,44 +145,33 @@ export default {
             name:'',
             title:'',
             description:'',
-            category:'',
-            sprice:0,
-            picture:{}
+            majorcategory:''
         },
         errs:{},
         option:[],
         title:'Create',
-        init:'api/products/view',
-        redirect: '/products',
-        store: 'api/products',
+        // init:'api/discounts/view',
+        redirect: '/discounts',
+        store: 'api/discounts',
         method: 'post',
         snackbar:false,
         timeout:3000
     }
   },
-  created(){
-    this.fetchData()
-  },
   methods:{
-    onFile(e){
-      console.log(e)
-      this.form.picture = e
-    },
     Back(){
       this.$router.push(this.redirect)
     },
    async save(){
         try{
-            let fd = new FormData();
-                 fd.append("picture", this.form.picture, this.form.picture.name)
-                 fd.append("name", this.form.name)
-                 fd.append("title", this.form.title)
-                 fd.append("description", this.form.description)
-                 fd.append("category", this.form.category)
-                 fd.append("sprice", this.form.sprice)
-                const {data} = await axios.post(this.store, fd ,{'Content-Type': 'multipart/form-data'})
-              if(data){
-                this.$router.push(this.redirect)
+          console.log(this.form)
+                const response = await axios.post(this.store, {
+                    name: this.form.name,
+                    title: this.form.title,
+                    description: this.form.description,
+                })
+                if(response.status === 201){
+                    this.$router.push(this.redirect)
                 }
         }catch(err){
             this.snackbar = true
@@ -250,20 +180,6 @@ export default {
     
         }
     },
-    async fetchData(){
-        try{
-            // console.log(token)
-           const {data} = await axios.get(`${this.init}`)
-            // this.option = data
-            console.log(data)
-            const op = data.map(d => {
-              return d.name
-            })
-            this.option = op
-        }catch(err){
-           console.log(err)
-        }
-    },  
   }
   }
 </script>

@@ -11,7 +11,7 @@
 import back from '@/layouts/back'
 import DataViewer from '@/components/DataViewer'
 export default {
-      name: 'productsIndex',
+      name: 'pricesIndex',
     components:{
         DataViewer,
         back,
@@ -19,21 +19,20 @@ export default {
     },
       data(){
           return{
-              title:'products',
-              source: '/api/products',
-              create: '/products/create',
-              show: '/products/',
-               headers:[
+              title:'prices',
+              source: '/api/prices',
+              create: '/prices/create',
+              show: '/prices/',
+              headers:[
                 { text: 'Id', value: 'ID' },
                 { text: 'Name', value: 'name' },
                 { text: 'Title', value: 'title' },
                 { text: 'Description', value: 'description' },
-                { text: 'Category', value: 'category' },
-                { text: 'Price', value: 'sprice' },
+                { text: 'Product', value: 'product' },
                 { text: 'Actions', value: 'actions', sortable: false },
               ],
               filters:[
-                  'ID', 'name', 'title', 'description','category','sprice'
+                  'ID', 'name', 'title', 'description','product'
               ],
               operators:['like']
               // operators:['equal_to','not_equal_to','less_than','greater_than','greater_than_or_equall_to','less_than_or_equal_to','in','not_in','like','between']

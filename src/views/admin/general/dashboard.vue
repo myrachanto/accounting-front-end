@@ -9,7 +9,7 @@
                 cols="12"
                 sm="8"
                 md="4">
-                 <Dcard :title="invoices.Name" :total="invoices.Total" :desc="invoices.Description" :icon="invoices.Icon"/>
+                 <Dcard :title="invoices.Name" :total="invoices.Total" :desc="invoices.Description" :icon="invoices.Icon" :rout="`/invoice`"/>
                 </v-col>
                  <v-col  v-if="products"
                 class="auto"

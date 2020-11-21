@@ -92,8 +92,8 @@
                                         rules="required"
                                       >
                                       <v-text-field
-                                        v-model="form.price"
-                                        label="Price"
+                                        v-model="form.sprice"
+                                        label="Selling Price"
                                         type="number"
                                         :error-messages="errors" 
                                         required
@@ -207,7 +207,7 @@ export default {
             description:'',
             category:'',
             majorcategory:'',
-            price:0,
+            sprice:0,
             picture:{}
         },
         majorcats:[],
@@ -245,7 +245,7 @@ export default {
                  fd.append("title", this.form.title)
                  fd.append("description", this.form.description)
                  fd.append("category", this.form.category)
-                 fd.append("price", this.form.price)
+                 fd.append("sprice", this.form.sprice)
             // axios.defaults.headers.common['Content-Type'] = 'multipart/form-data'
             const {data} = await axios.put(`${this.store}/${this.$route.params.id}`, 
             // {

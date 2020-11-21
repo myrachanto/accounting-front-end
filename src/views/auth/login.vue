@@ -136,10 +136,10 @@ import front from '../../layouts/front'
     },
      async Login(){
         try {
-            const {data} = await axios.post('/login', {
-                email: this.email,
-                password: this.password,
-            })
+                let fd = new FormData();
+                 fd.append("email", this.email)
+                 fd.append("password", this.password)
+                const {data} = await axios.post('/login', fd ,{'Content-Type': 'multipart/form-data'})
               if(data){
                     localStorage.setItem('access_token', data.Token)
                     localStorage.setItem('username', data.uname)

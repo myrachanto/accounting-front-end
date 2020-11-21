@@ -101,7 +101,7 @@ import foot from './foot'
           items: [
                 {title:'Customers', icon:'mdi mdi-account-multiple', route:'/customer'},
                 {title:'Invoice', icon:'mdi mdi mdi-file', route:'/invoice'},
-                {title:'Credit Note', icon:'mdi mdi mdi-redo'},
+                {title:'Credit Note', icon:'mdi mdi mdi-redo', route:'/credit'},
           ],
           title: 'Customer',
         },
@@ -110,11 +110,10 @@ import foot from './foot'
         //   active: true,
           items: [
                 {title:'products', icon:'mdi mdi-file-multiple', route:'/products'},
-                {title:'Invoice', icon:'mdi  mdi-file'},
                 {title:'Category', icon:'mdi-cards', route:'/categorys'},
                 {title:'MajorCagory', icon:'di-cards-outline', route:'/majorcat'},
-                {title:'Price', icon:'mdi mdi-currency-usd'},
-                {title:'Discounts', icon:'mdi mdi-window-minimize'},
+                {title:'Price', icon:'mdi mdi-currency-usd', route:'/prices'},
+                {title:'Discounts', icon:'mdi mdi-window-minimize', route:'/discounts'},
           ],
           title: 'Products',
         },
@@ -132,7 +131,7 @@ import foot from './foot'
           items: [
                 {title:'Payments', icon:'mdi  mdi-database-minus'},
                 {title:'Receipts', icon:'mdi  mdi-database-plus'},
-                {title:'PaymentForms', icon:'mdi mdi-clipboard-text'},
+                {title:'PaymentForms', icon:'mdi mdi-clipboard-text',route:'/paymentform'},
                 {title:'Expence', icon:'mdi mdi-clipboard-outline'},
                 {title:'AllocatePayments', icon:'mdi mdi-checkbox-multiple-marked'},
                 {title:'ALlocateReceipts', icon:'mdi mdi-checkbox-multiple-marked-outline'},
@@ -156,7 +155,7 @@ import foot from './foot'
           action: 'mdi mdi-account-multiple',
           items: [
                 {title:'Users', icon:'mdi  mdi-account-multiple'},
-                {title:'Tax', icon:'mdi  mdi-file'},
+                {title:'Tax', icon:'mdi  mdi-file', route:'/tax'},
                 ],
           title: 'Settings',
         },

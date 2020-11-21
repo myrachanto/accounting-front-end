@@ -243,16 +243,16 @@ import axios from 'axios'
         },
         async Register(){
                 try {
-                 const {data} = await axios.post('/signup', {
-                    fname: this.form.firstname,
-                    lname: this.form.lastname,
-                    uname: this.form.username,
-                    phone: this.form.phone,
-                    address: this.form.address,
-                    email: this.form.email,
-                    password: this.form.password,
-                })
-                 if(data){
+                  let fd = new FormData();
+                 fd.append("fname", this.form.firstname)
+                 fd.append("lname", this.form.lastname)
+                 fd.append("uname", this.form.username)
+                 fd.append("phone", this.form.phone)
+                 fd.append("address", this.form.address)
+                 fd.append("email", this.form.email)
+                 fd.append("password", this.form.password)
+                const response = await axios.post('/register', fd ,{'Content-Type': 'multipart/form-data'})
+                 if(response){
                     this.$router.push("/auth/login")
                 }
         }catch(err){
